@@ -1,12 +1,34 @@
 fn main() {
-    let numbers = vec![1, 2, 3, 4, 5];
-    // contains_value(&numbers, &3);
-    println!("Reversed strings: {:?}", contains_value(&numbers, &3));
+    let x = 5u8;
+    let y = "Hello".to_string();
+    // static_dispatch(x);
+    // dynamic_dispatch(&y);
+}
+// Exercise 6
+// Fix errors and implement
+// Run tests
+// Hint: Associated Type
+
+trait Container {
+    type Item;
+    fn insert(&mut self, item: Self::Item);
+    fn remove(&mut self) -> Option<Self::Item>;
+    fn is_empty(&self) -> bool;
 }
 
-fn contains_value<T: std::cmp::PartialEq>(collection: &[T], value: &T) -> bool {
-    if collection.is_empty() {
-        return false;
+struct Stack {
+    items: Vec<u8>,
+}
+
+impl Container for Stack {
+    type Item = u8;
+    fn insert(&mut self, item: Self::Item) {
+        self.items.push(item)
     }
-    collection.contains(value)
+    fn remove(&mut self) -> Option<Self::Item> {
+        self.items.pop()
+    }
+    fn is_empty(&self) -> bool {
+        self.is_empty()
+    }
 }
